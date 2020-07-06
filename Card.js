@@ -24,21 +24,20 @@ const Card = ({ day, createTask, toggleTask,Deletetask,deleteday }) => {
       <div className="task-wrapper">
         {day.tasks.map((task, taskIndex) => {
           return (
-            <div
-              className="each-task"
-              key={taskIndex}
-              onClick={() => toggleTask(taskIndex)}
-            >
-              <h3 className={task.completed === true ? "line" : ""}>
-                {task.title}
-                <a  onClick={()=> Deletetask(taskIndex)}><span><button>D</button></span></a>
-              </h3>
-            </div>
-          );
-        })}
+              <div
+                className="each-task"
+                key={taskIndex}
+              >
+                <h3 className={task.completed === true ? "line" : ""}>
+                  <a  onClick={() => toggleTask(taskIndex)}>{task.title}</a>
+                  <a  onClick={()=> Deletetask(taskIndex)}><span><button>Delete</button></span></a>
+                </h3>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
-  );
-};
-
-export default Card;
+    );
+  };
+  
+  export default Card;
