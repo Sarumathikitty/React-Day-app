@@ -4,20 +4,15 @@ import "./App.css";
 import Nav from "./Nav";
 import Tracker from "./Tracker";
 import NewCard from "./NewCard";
-
 const App = () => {
   const [days, setDays] = useState([]);
-
   const [state, setState] = useState("VIEW");
-
   const createDay = (value) => {
     // value shoud be day title
-
     const newDay = {
       title: value,
       tasks: [],
     };
-
     setDays(days.concat([newDay]));
     setState("VIEW");
   };
@@ -41,6 +36,23 @@ const App = () => {
     });
 
     setDays(newDays);
+  };
+  const Deletetask = (dayIndex, taskIndex) => {
+    setDays(
+      days.map((day, index) => {
+        if (index === dayIndex) {
+          return {
+            ...day,
+            tasks: day.tasks.filter((task, index) => {
+              if (index === taskIndex) {
+                return false;
+              } else return true;
+            }),
+          };
+        }
+        return day;
+      })
+    );
   };
 
   const toggleTask = (dayIndex, taskIndex) => {
